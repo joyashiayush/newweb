@@ -1,0 +1,718 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090a16">
+<title>Happy Birthday ✦</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+
+:root {
+    --night: #090a16;
+    --gold: #f0ce91;
+    --cream: #fff8ed;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--cream);
+    font-family: "DM Sans", sans-serif;
+    background: radial-gradient(ellipse at 50% 0%, #342541 0%, #19152b 32%, var(--night) 76%);
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: .42;
+    background-image:
+        radial-gradient(1px 1px at 12% 18%, #fff 99%, transparent),
+        radial-gradient(2px 2px at 82% 28%, var(--gold) 99%, transparent),
+        radial-gradient(1px 1px at 56% 74%, #fff 99%, transparent),
+        radial-gradient(1px 1px at 30% 90%, #fff 99%, transparent);
+    background-size: 210px 210px, 290px 290px, 250px 250px, 330px 330px;
+}
+
+main, footer { position: relative; z-index: 1; }
+
+.screen {
+    display: none;
+    min-height: 100vh;
+    padding: 34px 20px 64px;
+    align-items: center;
+    justify-content: center;
+}
+
+.screen.active {
+    display: flex;
+    animation: screenIn .7s ease both;
+}
+
+@keyframes screenIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.inner {
+    width: min(760px, 100%);
+    margin: auto;
+    text-align: center;
+}
+
+.eyebrow {
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    line-height: 1.7;
+    text-transform: uppercase;
+}
+
+h1, h2 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 500;
+}
+
+h1 {
+    margin: 23px 0 18px;
+    font-size: clamp(55px, 11vw, 112px);
+    line-height: .98;
+    letter-spacing: -2px;
+}
+
+h1 span {
+    display: block;
+    color: var(--gold);
+    font-style: italic;
+}
+
+.intro {
+    max-width: 510px;
+    margin: 0 auto 32px;
+    color: #d3cfdd;
+    font-size: clamp(14px, 2vw, 17px);
+    line-height: 1.9;
+}
+
+.cake-orbit {
+    position: relative;
+    display: grid;
+    width: clamp(138px, 23vw, 190px);
+    aspect-ratio: 1;
+    place-items: center;
+    margin: 0 auto 28px;
+    border: 1px solid #d9b77966;
+    border-radius: 50%;
+    box-shadow: 0 0 75px #d9b77918, inset 0 0 45px #d9b77910;
+}
+
+.cake-orbit::before, .cake-orbit::after {
+    position: absolute;
+    content: "";
+    border: 1px solid #d9b77935;
+    border-radius: 50%;
+    inset: 12px;
+}
+
+.cake-orbit::after {
+    inset: -9px;
+    border-style: dashed;
+    animation: orbit 36s linear infinite;
+}
+
+@keyframes orbit {
+    to { transform: rotate(360deg); }
+}
+
+.cake {
+    font-size: clamp(58px, 10vw, 80px);
+    filter: drop-shadow(0 0 22px #f1cf9144);
+}
+
+button {
+    border: 0;
+    font: 700 12px "DM Sans", sans-serif;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: transform .22s ease, box-shadow .22s ease;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 36px #eac78935;
+}
+
+button:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 4px;
+}
+
+.primary {
+    padding: 16px 32px;
+    border-radius: 999px;
+    color: #17111d;
+    background: linear-gradient(115deg, #f8dfaa, #c99b5b);
+    box-shadow: 0 8px 30px #d8ae7030;
+}
+
+.secondary {
+    padding: 14px 27px;
+    border: 1px solid #c8a66b88;
+    border-radius: 999px;
+    color: var(--gold);
+    background: #ffffff08;
+}
+
+.tiny-note {
+    margin-top: 25px;
+    color: #89869b;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+}
+
+.message-panel {
+    position: relative;
+    width: min(650px, 100%);
+    padding: clamp(26px, 6vw, 50px);
+    overflow: hidden;
+    border: 1px solid #ffffff20;
+    border-radius: 27px;
+    background: linear-gradient(145deg, #ffffff10, #ffffff04);
+    box-shadow: 0 28px 90px #0007;
+    text-align: left;
+    backdrop-filter: blur(15px);
+}
+
+.message-panel::after {
+    position: absolute;
+    top: 17px;
+    right: 25px;
+    color: #e6c78d66;
+    content: "✦";
+    font-size: 28px;
+}
+
+.message-panel h2 {
+    margin: 12px 0 20px;
+    font-size: clamp(34px, 6vw, 49px);
+    line-height: 1.12;
+}
+
+.personal-message {
+    color: #e0dce7;
+    font-size: 15px;
+    line-height: 2;
+    white-space: pre-line;
+}
+
+.message-actions, .wish-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.back-button {
+    margin-top: 22px;
+    padding: 10px;
+    border: 0;
+    color: #aaa6b9;
+    background: transparent;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+}
+
+.wish-wrap {
+    width: min(590px, 100%);
+    margin: auto;
+}
+
+.wish-card {
+    position: relative;
+    min-height: 410px;
+    padding: clamp(30px, 6vw, 56px);
+    overflow: hidden;
+    border-radius: 8px 27px 8px 27px;
+    color: #2a2030;
+    background: linear-gradient(145deg, #fffaf0, #eee0c7);
+    box-shadow: 0 25px 90px #0008;
+    text-align: left;
+}
+
+.wish-card::before {
+    position: absolute;
+    inset: 12px;
+    border: 1px solid #b99a6a88;
+    border-radius: 4px 20px 4px 20px;
+    content: "";
+    pointer-events: none;
+}
+
+.wish-card::after {
+    position: absolute;
+    right: 35px;
+    bottom: 23px;
+    color: #c09b62;
+    content: "✦";
+    font-size: 30px;
+}
+
+.wish-card .eyebrow { color: #987344; }
+
+.wish-card h2 {
+    margin: 16px 0 19px;
+    color: #2a2030;
+    font-size: clamp(39px, 7vw, 58px);
+    line-height: 1.06;
+}
+
+.wish-card h2 em { color: #a77c43; }
+
+.wish-card p {
+    max-width: 450px;
+    color: #514657;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.wish-sign {
+    margin-top: 25px;
+    color: #9b7542;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 20px;
+    font-style: italic;
+}
+
+.confetti {
+    position: fixed;
+    top: -16px;
+    z-index: 110;
+    width: 7px;
+    height: 12px;
+    border-radius: 2px;
+    pointer-events: none;
+    animation: confettiFall 4s linear forwards;
+}
+
+@keyframes confettiFall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.celebration-message {
+    margin-top: 18px;
+    color: var(--gold);
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 23px;
+    text-align: center;
+}
+
+/* POPUP WINDOW */
+
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.82);
+    backdrop-filter: blur(10px);
+}
+
+.popup-overlay.show {
+    display: flex;
+    animation: screenIn .5s ease;
+}
+
+.popup-window {
+    position: relative;
+    width: min(520px, 100%);
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 45px 30px;
+    border: 1px solid #f0ce91;
+    border-radius: 25px;
+    background: linear-gradient(145deg, #292139, #11111f);
+    box-shadow: 0 25px 90px #000b;
+    text-align: center;
+}
+
+.popup-window h2 {
+    color: #f0ce91;
+    font-size: clamp(30px, 7vw, 42px);
+    margin: 18px 0;
+}
+
+.popup-window p {
+    color: #fff8ed;
+    font-size: 15px;
+    line-height: 2;
+    white-space: pre-line;
+}
+
+.popup-close {
+    position: absolute;
+    top: 12px;
+    right: 17px;
+    color: white;
+    background: transparent;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.popup-window .primary {
+    margin-top: 25px;
+}
+
+footer {
+    position: fixed;
+    right: 0;
+    bottom: 13px;
+    left: 0;
+    color: #77748a;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-align: center;
+    pointer-events: none;
+}
+
+@media (max-width: 480px) {
+    .screen { padding: 27px 17px 58px; }
+    .message-panel { border-radius: 21px; }
+    .wish-card { min-height: 390px; }
+    .intro { line-height: 1.75; }
+    .popup-window { padding: 42px 22px 30px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+<main>
+
+<!-- SCREEN 1 -->
+
+<section class="screen active" id="screen1">
+    <div class="inner">
+
+        <div class="eyebrow">
+            11 November · A day made brighter
+        </div>
+
+        <div class="cake-orbit">
+            <div class="cake">🎂</div>
+        </div>
+
+        <div class="eyebrow">Today is all about you</div>
+
+        <h1>Happy <span>Birthday! CAT</span></h1>
+
+        <p class="intro"></p>
+
+        <button class="primary" id="moreBtn">
+            More ✦
+        </button>
+
+        <div class="tiny-note"></div>
+
+    </div>
+</section>
+
+<!-- SCREEN 2 -->
+
+<section class="screen" id="screen2">
+    <div class="inner">
+
+        <article class="message-panel">
+
+            <div class="eyebrow">A message</div>
+
+            <h2>
+                There’s something<br>
+                <em style="color:#e4c184">I want to tell you.</em>
+                <br><br>
+                HAPPY birthday ducki,
+                HAPPY birthday ducki queen,
+                HAPPY birthday tubelight,
+                HAPPY birthday catqueen,
+                HAPPY birthday p.butterfly ,
+                HAPPY birthday Future Advocate,
+                HAPPY birthday Artist
+            </h2>
+
+            <div class="personal-message" id="personalMessage">
+            </div>
+
+            <div class="message-actions">
+                <button class="primary" id="nextBtn">
+                    Next →
+                </button>
+            </div>
+
+        </article>
+
+        <button class="back-button" id="backToWelcome">
+            ← BACK
+        </button>
+
+    </div>
+</section>
+
+<!-- SCREEN 3 -->
+
+<section class="screen" id="screen3">
+
+    <div class="wish-wrap">
+
+        <article class="wish-card">
+
+            <div class="eyebrow">
+                With all my warmest wishes
+            </div>
+
+            <h2>
+                May your year<br>
+                be <em>beautiful.</em>
+            </h2>
+
+            <p>
+                May your days be filled with genuine smiles,
+                your heart find peace, and your dreams slowly
+                turn into reality. May you always be surrounded
+                by people who see your worth, celebrate your
+                happiness, and stand beside you through every season.
+            </p>
+
+            <p>
+                Keep being the wonderful person you are.
+                You deserve every little bit of happiness
+                coming your way.
+            </p>
+
+            <div class="wish-sign">
+                Happy Birthday, once again. ✨
+            </div>
+
+        </article>
+
+        <div class="wish-actions">
+
+            <button class="secondary" id="backToMessage">
+                ← Previous
+            </button>
+
+            <button class="primary" id="celebrateBtn">
+                Celebrate ♥
+            </button>
+
+        </div>
+
+        <div class="celebration-message" id="celebrationMessage" hidden>
+            May this year be your happiest one yet! 
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<!-- BIRTHDAY POPUP -->
+
+<div class="popup-overlay" id="celebrationPopup">
+
+    <div class="popup-window">
+
+        <button class="popup-close" id="closePopup" aria-label="Close">
+            ×
+        </button>
+
+        <div class="eyebrow">
+            
+        </div>
+
+        <h2></h2>
+
+        
+        <p id="popupText">
+          Aaj bhi muze aapka naam yaad nahi raha!!
+Happy Birthday CAT! 
+
+FROM 
+Ducka!!
+
+        </p>
+
+        <button class="primary" id="popupDone">
+            Close 
+        </button>
+
+    </div>
+
+</div>
+
+<footer>
+    11 · 11 · A LITTLE PAGE, JUST FOR YOU
+</footer>
+
+<script>
+"use strict";
+
+// SCREEN NAVIGATION
+
+const screens = Array.from(
+    document.querySelectorAll(".screen")
+);
+
+function showScreen(screenNumber) {
+
+    screens.forEach((screen, index) => {
+        screen.classList.toggle(
+            "active",
+            index === screenNumber - 1
+        );
+    });
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+document.getElementById("moreBtn")
+.addEventListener("click", () => showScreen(2));
+
+document.getElementById("nextBtn")
+.addEventListener("click", () => showScreen(3));
+
+document.getElementById("backToWelcome")
+.addEventListener("click", () => showScreen(1));
+
+document.getElementById("backToMessage")
+.addEventListener("click", () => showScreen(2));
+
+
+// POPUP ELEMENT
+
+const popup = document.getElementById("celebrationPopup");
+
+
+// CELEBRATE BUTTON + CONFETTI
+
+document.getElementById("celebrateBtn")
+.addEventListener("click", () => {
+
+    // Open Popup
+    popup.classList.add("show");
+
+    // Confetti colors
+    const colors = [
+        "#f1cf91",
+        "#f8e8c7",
+        "#bca2d8",
+        "#e99baf",
+        "#ffffff"
+    ];
+
+    // Create 100 confetti pieces
+    for (let i = 0; i < 100; i++) {
+
+        const piece = document.createElement("span");
+
+        piece.className = "confetti";
+
+        piece.setAttribute("aria-hidden", "true");
+
+        piece.style.left =
+            Math.random() * 100 + "vw";
+
+        piece.style.backgroundColor =
+            colors[Math.floor(Math.random() * colors.length)];
+
+        piece.style.animationDelay =
+            Math.random() * 1.4 + "s";
+
+        piece.style.animationDuration =
+            3 + Math.random() * 2 + "s";
+
+        document.body.appendChild(piece);
+
+        window.setTimeout(() => {
+            piece.remove();
+        }, 6000);
+    }
+
+    // Show celebration text
+    document.getElementById("celebrationMessage").hidden = false;
+
+});
+
+
+// CLOSE POPUP USING X BUTTON
+
+document.getElementById("closePopup")
+.addEventListener("click", () => {
+
+    popup.classList.remove("show");
+
+});
+
+
+// CLOSE POPUP USING CLOSE BUTTON
+
+document.getElementById("popupDone")
+.addEventListener("click", () => {
+
+    popup.classList.remove("show");
+
+});
+
+
+// CLOSE POPUP WHEN CLICKING OUTSIDE
+
+popup.addEventListener("click", (event) => {
+
+    if (event.target === popup) {
+        popup.classList.remove("show");
+    }
+
+});
+
+
+// CLOSE POPUP USING ESCAPE KEY
+
+document.addEventListener("keydown", (event) => {
+
+    if (event.key === "Escape") {
+        popup.classList.remove("show");
+    }
+
+});
+
+</script>
+
+</body>
+</html>
