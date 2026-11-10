@@ -304,7 +304,7 @@ button:hover { transform: translateY(-3px); }
 
 .popup-window .primary { margin-top: 20px; }
 
-/* NEW GALLERY */
+/* FIXED PHOTO GALLERY */
 
 .gallery-overlay {
     position: fixed;
@@ -333,25 +333,6 @@ button:hover { transform: translateY(-3px); }
     font-size: 38px;
 }
 
-.gallery-subtitle {
-    color: #c9c2d5;
-    margin-bottom: 25px;
-}
-
-.upload-label {
-    display: inline-block;
-    padding: 15px 25px;
-    border-radius: 30px;
-    background: linear-gradient(115deg,#f8dfaa,#c99b5b);
-    color: #17111d;
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    cursor: pointer;
-}
-
-#photoUpload { display: none; }
-
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(2,1fr);
@@ -360,7 +341,6 @@ button:hover { transform: translateY(-3px); }
 }
 
 .gallery-item {
-    position: relative;
     aspect-ratio: 1;
     overflow: hidden;
     border: 1px solid #f0ce9144;
@@ -371,34 +351,13 @@ button:hover { transform: translateY(-3px); }
 .gallery-item img {
     width: 100%;
     height: 100%;
+    display: block;
     object-fit: cover;
     cursor: pointer;
     transition: transform .4s ease;
 }
 
 .gallery-item img:hover { transform: scale(1.07); }
-
-.remove-photo {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    z-index: 2;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: #000b;
-    color: white;
-    font-size: 18px;
-}
-
-.empty-photo {
-    display: grid;
-    width: 100%;
-    height: 100%;
-    place-items: center;
-    color: #aaa;
-    font-size: 13px;
-}
 
 .gallery-close {
     margin: 10px;
@@ -559,34 +518,40 @@ Ducka!!
 </div>
 </div>
 
-<!-- PHOTO GALLERY -->
+<!-- FIXED PHOTO GALLERY -->
 
 <div class="gallery-overlay" id="galleryOverlay">
 <div class="gallery-container">
 
-    <div class="eyebrow">MEMORIES · MOMENTS · SMILES</div>
     <h2>Our Little Gallery ✨</h2>
 
-    <p class="gallery-subtitle">
-        Six little spaces for beautiful memories ❤️
-    </p>
+    <div class="gallery-grid">
 
-    <label for="photoUpload" class="upload-label">
-        + Upload Your Photos
-    </label>
+        <div class="gallery-item">
+            <img src="images/img1.jpg" alt="Memory 1">
+        </div>
 
-    <input
-        type="file"
-        id="photoUpload"
-        accept="image/*"
-        multiple
-    >
+        <div class="gallery-item">
+            <img src="images/img2.jpg" alt="Memory 2">
+        </div>
 
-    <p id="photoCount" class="gallery-subtitle">
-        0 / 6 Photos uploaded
-    </p>
+        <div class="gallery-item">
+            <img src="images/img3.jpg" alt="Memory 3">
+        </div>
 
-    <div class="gallery-grid" id="galleryGrid"></div>
+        <div class="gallery-item">
+            <img src="images/img4.jpg" alt="Memory 4">
+        </div>
+
+        <div class="gallery-item">
+            <img src="images/img5.jpg" alt="Memory 5">
+        </div>
+
+        <div class="gallery-item">
+            <img src="images/img6.jpg" alt="Memory 6">
+        </div>
+
+    </div>
 
     <button class="secondary gallery-close" id="closeGallery">
         ← Back to Birthday
@@ -659,84 +624,13 @@ document.getElementById("closePopup").onclick = closePopup;
 document.getElementById("popupDone").onclick = closePopup;
 
 
-// GALLERY
+// OPEN AND CLOSE GALLERY
 
-const upload = document.getElementById("photoUpload");
-const galleryGrid = document.getElementById("galleryGrid");
 const galleryOverlay = document.getElementById("galleryOverlay");
-const photoCount = document.getElementById("photoCount");
-
-let photos = [];
-
-function renderGallery() {
-    galleryGrid.innerHTML = "";
-
-    for(let i=0;i<6;i++) {
-        const item = document.createElement("div");
-        item.className = "gallery-item";
-
-        if(photos[i]) {
-            const img = document.createElement("img");
-            img.src = photos[i].url;
-            img.alt = "Birthday memory "+(i+1);
-
-            img.onclick = () => {
-                document.getElementById("lightboxImage").src = photos[i].url;
-                document.getElementById("lightbox").classList.add("show");
-            };
-
-            const remove = document.createElement("button");
-            remove.className = "remove-photo";
-            remove.textContent = "×";
-            remove.setAttribute("aria-label","Remove photo "+(i+1));
-
-            remove.onclick = (event) => {
-                event.stopPropagation();
-                URL.revokeObjectURL(photos[i].url);
-                photos.splice(i,1);
-                renderGallery();
-            };
-
-            item.appendChild(img);
-            item.appendChild(remove);
-        } else {
-            const empty = document.createElement("div");
-            empty.className = "empty-photo";
-            empty.textContent = "+ Add Photo "+(i+1);
-            item.appendChild(empty);
-        }
-
-        galleryGrid.appendChild(item);
-    }
-
-    photoCount.textContent = photos.length+" / 6 Photos uploaded";
-}
-
-upload.addEventListener("change",function() {
-
-    const selected = Array.from(this.files);
-    const remaining = 6-photos.length;
-
-    if(selected.length > remaining) {
-        alert("You can upload only 6 photos in total!");
-    }
-
-    selected.slice(0,remaining).forEach(file => {
-        if(file.type.startsWith("image/")) {
-            photos.push({
-                url: URL.createObjectURL(file)
-            });
-        }
-    });
-
-    this.value = "";
-    renderGallery();
-});
 
 document.getElementById("openGallery").onclick = () => {
     popup.classList.remove("show");
     galleryOverlay.classList.add("show");
-    renderGallery();
 };
 
 document.getElementById("closeGallery").onclick = () => {
@@ -745,9 +639,17 @@ document.getElementById("closeGallery").onclick = () => {
 };
 
 
-// FULL SCREEN IMAGE
+// FULL SCREEN IMAGE PREVIEW
 
 const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+
+document.querySelectorAll(".gallery-item img").forEach(img => {
+    img.onclick = () => {
+        lightboxImage.src = img.src;
+        lightbox.classList.add("show");
+    };
+});
 
 document.getElementById("closeLightbox").onclick = () => {
     lightbox.classList.remove("show");
@@ -762,6 +664,7 @@ lightbox.onclick = (event) => {
 document.addEventListener("keydown",(event) => {
     if(event.key === "Escape") {
         lightbox.classList.remove("show");
+
         if(galleryOverlay.classList.contains("show")) {
             galleryOverlay.classList.remove("show");
             popup.classList.add("show");
@@ -770,10 +673,6 @@ document.addEventListener("keydown",(event) => {
         }
     }
 });
-
-// INITIAL GALLERY
-
-renderGallery();
 
 </script>
 </body>
