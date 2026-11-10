@@ -18,8 +18,6 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
-
 body {
     margin: 0;
     min-height: 100vh;
@@ -38,10 +36,8 @@ body::before {
     opacity: .42;
     background-image:
         radial-gradient(1px 1px at 12% 18%, #fff 99%, transparent),
-        radial-gradient(2px 2px at 82% 28%, var(--gold) 99%, transparent),
-        radial-gradient(1px 1px at 56% 74%, #fff 99%, transparent),
-        radial-gradient(1px 1px at 30% 90%, #fff 99%, transparent);
-    background-size: 210px 210px, 290px 290px, 250px 250px, 330px 330px;
+        radial-gradient(2px 2px at 82% 28%, var(--gold) 99%, transparent);
+    background-size: 210px 210px, 290px 290px;
 }
 
 main, footer { position: relative; z-index: 1; }
@@ -101,7 +97,6 @@ h1 span {
     max-width: 510px;
     margin: 0 auto 32px;
     color: #d3cfdd;
-    font-size: clamp(14px, 2vw, 17px);
     line-height: 1.9;
 }
 
@@ -111,32 +106,14 @@ h1 span {
     width: clamp(138px, 23vw, 190px);
     aspect-ratio: 1;
     place-items: center;
-    margin: 0 auto 28px;
+    margin: 28px auto;
     border: 1px solid #d9b77966;
     border-radius: 50%;
-    box-shadow: 0 0 75px #d9b77918, inset 0 0 45px #d9b77910;
-}
-
-.cake-orbit::before, .cake-orbit::after {
-    position: absolute;
-    content: "";
-    border: 1px solid #d9b77935;
-    border-radius: 50%;
-    inset: 12px;
-}
-
-.cake-orbit::after {
-    inset: -9px;
-    border-style: dashed;
-    animation: orbit 36s linear infinite;
-}
-
-@keyframes orbit {
-    to { transform: rotate(360deg); }
+    box-shadow: 0 0 75px #d9b77918;
 }
 
 .cake {
-    font-size: clamp(58px, 10vw, 80px);
+    font-size: 75px;
     filter: drop-shadow(0 0 22px #f1cf9144);
 }
 
@@ -145,25 +122,16 @@ button {
     font: 700 12px "DM Sans", sans-serif;
     letter-spacing: 1.5px;
     cursor: pointer;
-    transition: transform .22s ease, box-shadow .22s ease;
+    transition: .22s ease;
 }
 
-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 14px 36px #eac78935;
-}
-
-button:focus-visible {
-    outline: 2px solid white;
-    outline-offset: 4px;
-}
+button:hover { transform: translateY(-3px); }
 
 .primary {
     padding: 16px 32px;
     border-radius: 999px;
     color: #17111d;
     background: linear-gradient(115deg, #f8dfaa, #c99b5b);
-    box-shadow: 0 8px 30px #d8ae7030;
 }
 
 .secondary {
@@ -182,31 +150,18 @@ button:focus-visible {
 }
 
 .message-panel {
-    position: relative;
     width: min(650px, 100%);
     padding: clamp(26px, 6vw, 50px);
-    overflow: hidden;
     border: 1px solid #ffffff20;
     border-radius: 27px;
     background: linear-gradient(145deg, #ffffff10, #ffffff04);
     box-shadow: 0 28px 90px #0007;
     text-align: left;
-    backdrop-filter: blur(15px);
-}
-
-.message-panel::after {
-    position: absolute;
-    top: 17px;
-    right: 25px;
-    color: #e6c78d66;
-    content: "✦";
-    font-size: 28px;
 }
 
 .message-panel h2 {
-    margin: 12px 0 20px;
-    font-size: clamp(34px, 6vw, 49px);
-    line-height: 1.12;
+    font-size: clamp(28px, 6vw, 45px);
+    line-height: 1.3;
 }
 
 .personal-message {
@@ -227,11 +182,8 @@ button:focus-visible {
 .back-button {
     margin-top: 22px;
     padding: 10px;
-    border: 0;
     color: #aaa6b9;
     background: transparent;
-    font-size: 10px;
-    letter-spacing: 1.5px;
 }
 
 .wish-wrap {
@@ -243,36 +195,16 @@ button:focus-visible {
     position: relative;
     min-height: 410px;
     padding: clamp(30px, 6vw, 56px);
-    overflow: hidden;
-    border-radius: 8px 27px 8px 27px;
+    border-radius: 8px 27px;
     color: #2a2030;
     background: linear-gradient(145deg, #fffaf0, #eee0c7);
     box-shadow: 0 25px 90px #0008;
     text-align: left;
 }
 
-.wish-card::before {
-    position: absolute;
-    inset: 12px;
-    border: 1px solid #b99a6a88;
-    border-radius: 4px 20px 4px 20px;
-    content: "";
-    pointer-events: none;
-}
-
-.wish-card::after {
-    position: absolute;
-    right: 35px;
-    bottom: 23px;
-    color: #c09b62;
-    content: "✦";
-    font-size: 30px;
-}
-
 .wish-card .eyebrow { color: #987344; }
 
 .wish-card h2 {
-    margin: 16px 0 19px;
     color: #2a2030;
     font-size: clamp(39px, 7vw, 58px);
     line-height: 1.06;
@@ -281,7 +213,6 @@ button:focus-visible {
 .wish-card h2 em { color: #a77c43; }
 
 .wish-card p {
-    max-width: 450px;
     color: #514657;
     font-size: 14px;
     line-height: 1.9;
@@ -301,8 +232,6 @@ button:focus-visible {
     z-index: 110;
     width: 7px;
     height: 12px;
-    border-radius: 2px;
-    pointer-events: none;
     animation: confettiFall 4s linear forwards;
 }
 
@@ -321,7 +250,7 @@ button:focus-visible {
     text-align: center;
 }
 
-/* POPUP WINDOW */
+/* POPUP */
 
 .popup-overlay {
     position: fixed;
@@ -331,7 +260,7 @@ button:focus-visible {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background: rgba(0, 0, 0, 0.82);
+    background: rgba(0,0,0,.82);
     backdrop-filter: blur(10px);
 }
 
@@ -346,21 +275,19 @@ button:focus-visible {
     max-height: 85vh;
     overflow-y: auto;
     padding: 45px 30px;
-    border: 1px solid #f0ce91;
+    border: 1px solid var(--gold);
     border-radius: 25px;
     background: linear-gradient(145deg, #292139, #11111f);
-    box-shadow: 0 25px 90px #000b;
     text-align: center;
 }
 
 .popup-window h2 {
-    color: #f0ce91;
-    font-size: clamp(30px, 7vw, 42px);
-    margin: 18px 0;
+    color: var(--gold);
+    font-size: 35px;
 }
 
 .popup-window p {
-    color: #fff8ed;
+    color: var(--cream);
     font-size: 15px;
     line-height: 2;
     white-space: pre-line;
@@ -373,11 +300,139 @@ button:focus-visible {
     color: white;
     background: transparent;
     font-size: 25px;
+}
+
+.popup-window .primary { margin-top: 20px; }
+
+/* NEW GALLERY */
+
+.gallery-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: none;
+    padding: 25px 15px;
+    overflow-y: auto;
+    background: rgba(8,8,20,.97);
+    backdrop-filter: blur(15px);
+}
+
+.gallery-overlay.show {
+    display: block;
+    animation: screenIn .5s ease;
+}
+
+.gallery-container {
+    width: min(750px, 100%);
+    margin: 20px auto;
+    text-align: center;
+}
+
+.gallery-container h2 {
+    color: var(--gold);
+    font-size: 38px;
+}
+
+.gallery-subtitle {
+    color: #c9c2d5;
+    margin-bottom: 25px;
+}
+
+.upload-label {
+    display: inline-block;
+    padding: 15px 25px;
+    border-radius: 30px;
+    background: linear-gradient(115deg,#f8dfaa,#c99b5b);
+    color: #17111d;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
     cursor: pointer;
 }
 
-.popup-window .primary {
-    margin-top: 25px;
+#photoUpload { display: none; }
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.gallery-item {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border: 1px solid #f0ce9144;
+    border-radius: 17px;
+    background: #ffffff0c;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform .4s ease;
+}
+
+.gallery-item img:hover { transform: scale(1.07); }
+
+.remove-photo {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 2;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #000b;
+    color: white;
+    font-size: 18px;
+}
+
+.empty-photo {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    color: #aaa;
+    font-size: 13px;
+}
+
+.gallery-close {
+    margin: 10px;
+}
+
+/* FULL SCREEN IMAGE */
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: #000e;
+}
+
+.lightbox.show { display: flex; }
+
+.lightbox img {
+    max-width: 95%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+.lightbox button {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    color: white;
+    background: transparent;
+    font-size: 35px;
 }
 
 footer {
@@ -392,18 +447,15 @@ footer {
     pointer-events: none;
 }
 
-@media (max-width: 480px) {
+@media(max-width:480px) {
     .screen { padding: 27px 17px 58px; }
-    .message-panel { border-radius: 21px; }
-    .wish-card { min-height: 390px; }
-    .intro { line-height: 1.75; }
+    .gallery-grid { gap: 10px; }
     .popup-window { padding: 42px 22px 30px; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+@media(prefers-reduced-motion:reduce) {
+    *,*::before,*::after {
         animation-duration: .01ms !important;
-        scroll-behavior: auto !important;
         transition-duration: .01ms !important;
     }
 }
@@ -411,131 +463,75 @@ footer {
 </head>
 
 <body>
+
 <main>
 
-<!-- SCREEN 1 -->
-
 <section class="screen active" id="screen1">
-    <div class="inner">
-
-        <div class="eyebrow">
-            11 November · A day made brighter
-        </div>
-
-        <div class="cake-orbit">
-            <div class="cake">🎂</div>
-        </div>
-
-        <div class="eyebrow">Today is all about you</div>
-
-        <h1>Happy <span>Birthday! CAT</span></h1>
-
-        <p class="intro"></p>
-
-        <button class="primary" id="moreBtn">
-            More ✦
-        </button>
-
-        <div class="tiny-note"></div>
-
-    </div>
+<div class="inner">
+    <div class="eyebrow">11 November · A day made brighter</div>
+    <div class="cake-orbit"><div class="cake">🎂</div></div>
+    <div class="eyebrow">Today is all about you</div>
+    <h1>Happy <span>Birthday! CAT</span></h1>
+    <p class="intro"></p>
+    <button class="primary" id="moreBtn">More ✦</button>
+    <div class="tiny-note"></div>
+</div>
 </section>
-
-<!-- SCREEN 2 -->
 
 <section class="screen" id="screen2">
-    <div class="inner">
-
-        <article class="message-panel">
-
-            <div class="eyebrow">A message</div>
-
-            <h2>
-                There’s something<br>
-                <em style="color:#e4c184">I want to tell you.</em>
-                <br><br>
-                HAPPY birthday ducki,
-                HAPPY birthday ducki queen,
-                HAPPY birthday tubelight,
-                HAPPY birthday catqueen,
-                HAPPY birthday p.butterfly ,
-                HAPPY birthday Future Advocate,
-                HAPPY birthday Artist
-            </h2>
-
-            <div class="personal-message" id="personalMessage">
-            </div>
-
-            <div class="message-actions">
-                <button class="primary" id="nextBtn">
-                    Next →
-                </button>
-            </div>
-
-        </article>
-
-        <button class="back-button" id="backToWelcome">
-            ← BACK
-        </button>
-
+<div class="inner">
+<article class="message-panel">
+    <div class="eyebrow">A message</div>
+    <h2>
+        There’s something<br>
+        <em style="color:#e4c184">I want to tell you.</em>
+        <br><br>
+        HAPPY birthday ducki,<br>
+        HAPPY birthday ducki queen,<br>
+        HAPPY birthday tubelight,<br>
+        HAPPY birthday catqueen,<br>
+        HAPPY birthday p.butterfly,<br>
+        HAPPY birthday Future Advocate,<br>
+        HAPPY birthday Artist
+    </h2>
+    <div class="personal-message" id="personalMessage"></div>
+    <div class="message-actions">
+        <button class="primary" id="nextBtn">Next →</button>
     </div>
+</article>
+<button class="back-button" id="backToWelcome">← BACK</button>
+</div>
 </section>
 
-<!-- SCREEN 3 -->
-
 <section class="screen" id="screen3">
+<div class="wish-wrap">
+<article class="wish-card">
+    <div class="eyebrow">With all my warmest wishes</div>
+    <h2>May your year<br>be <em>beautiful.</em></h2>
+    <p>
+        May your days be filled with genuine smiles,
+        your heart find peace, and your dreams slowly
+        turn into reality. May you always be surrounded
+        by people who see your worth, celebrate your
+        happiness, and stand beside you through every season.
+    </p>
+    <p>
+        Keep being the wonderful person you are.
+        You deserve every little bit of happiness
+        coming your way.
+    </p>
+    <div class="wish-sign">Happy Birthday, once again. ✨</div>
+</article>
 
-    <div class="wish-wrap">
+<div class="wish-actions">
+    <button class="secondary" id="backToMessage">← Previous</button>
+    <button class="primary" id="celebrateBtn">Celebrate ♥</button>
+</div>
 
-        <article class="wish-card">
-
-            <div class="eyebrow">
-                With all my warmest wishes
-            </div>
-
-            <h2>
-                May your year<br>
-                be <em>beautiful.</em>
-            </h2>
-
-            <p>
-                May your days be filled with genuine smiles,
-                your heart find peace, and your dreams slowly
-                turn into reality. May you always be surrounded
-                by people who see your worth, celebrate your
-                happiness, and stand beside you through every season.
-            </p>
-
-            <p>
-                Keep being the wonderful person you are.
-                You deserve every little bit of happiness
-                coming your way.
-            </p>
-
-            <div class="wish-sign">
-                Happy Birthday, once again. ✨
-            </div>
-
-        </article>
-
-        <div class="wish-actions">
-
-            <button class="secondary" id="backToMessage">
-                ← Previous
-            </button>
-
-            <button class="primary" id="celebrateBtn">
-                Celebrate ♥
-            </button>
-
-        </div>
-
-        <div class="celebration-message" id="celebrationMessage" hidden>
-            May this year be your happiest one yet! 
-        </div>
-
-    </div>
-
+<div class="celebration-message" id="celebrationMessage" hidden>
+    May this year be your happiest one yet!
+</div>
+</div>
 </section>
 
 </main>
@@ -543,176 +539,242 @@ footer {
 <!-- BIRTHDAY POPUP -->
 
 <div class="popup-overlay" id="celebrationPopup">
+<div class="popup-window">
+    <button class="popup-close" id="closePopup">×</button>
+    <div class="eyebrow">A SPECIAL DAY ✦</div>
+    <h2>Happy Birthday CAT! 🎂</h2>
+    <p id="popupText">
+Aaj bhi muze aapka naam yaad nahi raha!!
+Happy Birthday CAT!
 
-    <div class="popup-window">
-
-        <button class="popup-close" id="closePopup" aria-label="Close">
-            ×
-        </button>
-
-        <div class="eyebrow">
-            
-        </div>
-
-        <h2></h2>
-
-        
-        <p id="popupText">
-          Aaj bhi muze aapka naam yaad nahi raha!!
-Happy Birthday CAT! 
-
-FROM 
+FROM
 Ducka!!
+    </p>
 
-        </p>
-
-        <button class="primary" id="popupDone">
-            Close 
-        </button>
-
-    </div>
-
+    <button class="primary" id="openGallery">
+        View Gallery ✦
+    </button>
+    <br>
+    <button class="secondary" id="popupDone">Close</button>
+</div>
 </div>
 
-<footer>
-    11 · 11 · A LITTLE PAGE, JUST FOR YOU
-</footer>
+<!-- PHOTO GALLERY -->
+
+<div class="gallery-overlay" id="galleryOverlay">
+<div class="gallery-container">
+
+    <div class="eyebrow">MEMORIES · MOMENTS · SMILES</div>
+    <h2>Our Little Gallery ✨</h2>
+
+    <p class="gallery-subtitle">
+        Six little spaces for beautiful memories ❤️
+    </p>
+
+    <label for="photoUpload" class="upload-label">
+        + Upload Your Photos
+    </label>
+
+    <input
+        type="file"
+        id="photoUpload"
+        accept="image/*"
+        multiple
+    >
+
+    <p id="photoCount" class="gallery-subtitle">
+        0 / 6 Photos uploaded
+    </p>
+
+    <div class="gallery-grid" id="galleryGrid"></div>
+
+    <button class="secondary gallery-close" id="closeGallery">
+        ← Back to Birthday
+    </button>
+
+</div>
+</div>
+
+<!-- IMAGE PREVIEW -->
+
+<div class="lightbox" id="lightbox">
+    <button id="closeLightbox">×</button>
+    <img id="lightboxImage" src="" alt="Full size memory">
+</div>
+
+<footer>11 · 11 · A LITTLE PAGE, JUST FOR YOU</footer>
 
 <script>
 "use strict";
 
 // SCREEN NAVIGATION
 
-const screens = Array.from(
-    document.querySelectorAll(".screen")
-);
+const screens = document.querySelectorAll(".screen");
 
-function showScreen(screenNumber) {
-
-    screens.forEach((screen, index) => {
-        screen.classList.toggle(
-            "active",
-            index === screenNumber - 1
-        );
+function showScreen(number) {
+    screens.forEach((screen,index) => {
+        screen.classList.toggle("active",index === number-1);
     });
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    window.scrollTo({top:0,behavior:"smooth"});
 }
 
-document.getElementById("moreBtn")
-.addEventListener("click", () => showScreen(2));
-
-document.getElementById("nextBtn")
-.addEventListener("click", () => showScreen(3));
-
-document.getElementById("backToWelcome")
-.addEventListener("click", () => showScreen(1));
-
-document.getElementById("backToMessage")
-.addEventListener("click", () => showScreen(2));
+document.getElementById("moreBtn").onclick = () => showScreen(2);
+document.getElementById("nextBtn").onclick = () => showScreen(3);
+document.getElementById("backToWelcome").onclick = () => showScreen(1);
+document.getElementById("backToMessage").onclick = () => showScreen(2);
 
 
-// POPUP ELEMENT
+// POPUP
 
 const popup = document.getElementById("celebrationPopup");
 
-
-// CELEBRATE BUTTON + CONFETTI
-
-document.getElementById("celebrateBtn")
-.addEventListener("click", () => {
-
-    // Open Popup
+document.getElementById("celebrateBtn").onclick = () => {
     popup.classList.add("show");
-
-    // Confetti colors
-    const colors = [
-        "#f1cf91",
-        "#f8e8c7",
-        "#bca2d8",
-        "#e99baf",
-        "#ffffff"
-    ];
-
-    // Create 100 confetti pieces
-    for (let i = 0; i < 100; i++) {
-
-        const piece = document.createElement("span");
-
-        piece.className = "confetti";
-
-        piece.setAttribute("aria-hidden", "true");
-
-        piece.style.left =
-            Math.random() * 100 + "vw";
-
-        piece.style.backgroundColor =
-            colors[Math.floor(Math.random() * colors.length)];
-
-        piece.style.animationDelay =
-            Math.random() * 1.4 + "s";
-
-        piece.style.animationDuration =
-            3 + Math.random() * 2 + "s";
-
-        document.body.appendChild(piece);
-
-        window.setTimeout(() => {
-            piece.remove();
-        }, 6000);
-    }
-
-    // Show celebration text
     document.getElementById("celebrationMessage").hidden = false;
 
-});
+    const colors = [
+        "#f1cf91","#f8e8c7","#bca2d8",
+        "#e99baf","#ffffff"
+    ];
 
+    for(let i=0;i<100;i++) {
+        const piece = document.createElement("span");
+        piece.className = "confetti";
+        piece.style.left = Math.random()*100+"vw";
+        piece.style.backgroundColor =
+            colors[Math.floor(Math.random()*colors.length)];
+        piece.style.animationDelay = Math.random()*1.4+"s";
+        piece.style.animationDuration = 3+Math.random()*2+"s";
+        document.body.appendChild(piece);
+        setTimeout(()=>piece.remove(),6000);
+    }
+};
 
-// CLOSE POPUP USING X BUTTON
-
-document.getElementById("closePopup")
-.addEventListener("click", () => {
-
+function closePopup() {
     popup.classList.remove("show");
+}
 
-});
-
-
-// CLOSE POPUP USING CLOSE BUTTON
-
-document.getElementById("popupDone")
-.addEventListener("click", () => {
-
-    popup.classList.remove("show");
-
-});
+document.getElementById("closePopup").onclick = closePopup;
+document.getElementById("popupDone").onclick = closePopup;
 
 
-// CLOSE POPUP WHEN CLICKING OUTSIDE
+// GALLERY
 
-popup.addEventListener("click", (event) => {
+const upload = document.getElementById("photoUpload");
+const galleryGrid = document.getElementById("galleryGrid");
+const galleryOverlay = document.getElementById("galleryOverlay");
+const photoCount = document.getElementById("photoCount");
 
-    if (event.target === popup) {
-        popup.classList.remove("show");
+let photos = [];
+
+function renderGallery() {
+    galleryGrid.innerHTML = "";
+
+    for(let i=0;i<6;i++) {
+        const item = document.createElement("div");
+        item.className = "gallery-item";
+
+        if(photos[i]) {
+            const img = document.createElement("img");
+            img.src = photos[i].url;
+            img.alt = "Birthday memory "+(i+1);
+
+            img.onclick = () => {
+                document.getElementById("lightboxImage").src = photos[i].url;
+                document.getElementById("lightbox").classList.add("show");
+            };
+
+            const remove = document.createElement("button");
+            remove.className = "remove-photo";
+            remove.textContent = "×";
+            remove.setAttribute("aria-label","Remove photo "+(i+1));
+
+            remove.onclick = (event) => {
+                event.stopPropagation();
+                URL.revokeObjectURL(photos[i].url);
+                photos.splice(i,1);
+                renderGallery();
+            };
+
+            item.appendChild(img);
+            item.appendChild(remove);
+        } else {
+            const empty = document.createElement("div");
+            empty.className = "empty-photo";
+            empty.textContent = "+ Add Photo "+(i+1);
+            item.appendChild(empty);
+        }
+
+        galleryGrid.appendChild(item);
     }
 
-});
+    photoCount.textContent = photos.length+" / 6 Photos uploaded";
+}
 
+upload.addEventListener("change",function() {
 
-// CLOSE POPUP USING ESCAPE KEY
+    const selected = Array.from(this.files);
+    const remaining = 6-photos.length;
 
-document.addEventListener("keydown", (event) => {
-
-    if (event.key === "Escape") {
-        popup.classList.remove("show");
+    if(selected.length > remaining) {
+        alert("You can upload only 6 photos in total!");
     }
 
+    selected.slice(0,remaining).forEach(file => {
+        if(file.type.startsWith("image/")) {
+            photos.push({
+                url: URL.createObjectURL(file)
+            });
+        }
+    });
+
+    this.value = "";
+    renderGallery();
 });
+
+document.getElementById("openGallery").onclick = () => {
+    popup.classList.remove("show");
+    galleryOverlay.classList.add("show");
+    renderGallery();
+};
+
+document.getElementById("closeGallery").onclick = () => {
+    galleryOverlay.classList.remove("show");
+    popup.classList.add("show");
+};
+
+
+// FULL SCREEN IMAGE
+
+const lightbox = document.getElementById("lightbox");
+
+document.getElementById("closeLightbox").onclick = () => {
+    lightbox.classList.remove("show");
+};
+
+lightbox.onclick = (event) => {
+    if(event.target === lightbox) {
+        lightbox.classList.remove("show");
+    }
+};
+
+document.addEventListener("keydown",(event) => {
+    if(event.key === "Escape") {
+        lightbox.classList.remove("show");
+        if(galleryOverlay.classList.contains("show")) {
+            galleryOverlay.classList.remove("show");
+            popup.classList.add("show");
+        } else {
+            popup.classList.remove("show");
+        }
+    }
+});
+
+// INITIAL GALLERY
+
+renderGallery();
 
 </script>
-
 </body>
 </html>
